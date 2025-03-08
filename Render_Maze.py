@@ -33,7 +33,13 @@ def make_square_grid(maze, num_of_squares, canvas):
             if maze[i][j] == 1:
                 red = green = blue = 0.0
             elif maze[i][j] == 0:
-                red = green = blue = 1.0
+                red = green = blue = 0.5
+            elif maze[i][j] == 2:
+                blue = green = 0.0
+                red = 1.0
+            elif maze[i][j] == 3:
+                red = 1.0
+                green = blue = 0.5
             add_square(canvas, border + (square_size * j), border + (square_size * i), size=square_size, color=rgb_to_hex(red, green, blue))
 
 
@@ -65,12 +71,12 @@ def render_maze(maze, start, end):
     make_square_grid(maze, grid_size, canvas)
 
     add_circle(canvas, border, border, border + square_size, border + square_size, fill="green")
-    add_circle(canvas, window_size - border, window_size - border, window_size - border - square_size, window_size - border - square_size, fill="red")
+    add_circle(canvas, window_size - border, window_size - border, window_size - border - square_size, window_size - border - square_size, fill="blue")
 
     root.mainloop()
 
 #-----------------------------Global variables-----------------------------
-window_size = 800
+window_size = 1100
 border = (window_size - (window_size * 0.8)) / 2
 square_width = window_size * 0.8
 maze_array = [[0 for _ in range(2)] for _ in range(2)]
